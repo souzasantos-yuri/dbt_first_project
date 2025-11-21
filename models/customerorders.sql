@@ -9,7 +9,7 @@ from l1_landing.customers C
 join l1_landing.orders o 
     on c.customerid = o.customerid
 
-group by 1, 2
+group by all
 order by 3 desc
 
 )

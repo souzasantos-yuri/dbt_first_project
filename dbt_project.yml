@@ -10,19 +10,27 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-clean-targets:         
+clean-targets:
   - "target"
   - "dbt_packages"
 
 models:
-  dbt_first_project:
-    customerrevenue:
-      materialized: table
-    orders_fact:
-      materialized: table
+  dbt_project:
     customers_stg:
-      schema: L2_PROCESSING
+      config:
+        +schema: L2_PROCESSING
     orders_stg:
-      schema: L2_PROCESSING
+      config:
+        +schema: L2_PROCESSING
     orderitems_stg:
-      schema: L2_PROCESSING
+      config:
+        +schema: L2_PROCESSING
+    orders_fact:
+      config:
+        +schema: L2_PROCESSING
+        +materialized: table
+    customerrevenue:
+      config:
+        +materialized: table
+flags:
+  require_generic_test_arguments_property: true

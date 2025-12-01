@@ -1,0 +1,26 @@
+sources:
+  - name: landing
+    database: DBT_PROJECT
+    schema: L1_LANDING
+    config:
+      freshness:
+        warn_after: 
+          count: 1
+          period: day
+        error_after:
+          count: 3
+          period: day
+      loaded_at_field: updated_at
+    tables:
+
+      - name: customers
+        identifier: customers
+
+      - name: orders
+        identifier: orders
+
+      - name: orderitems
+        identifier: orderitems
+
+      - name: employees
+        identifier: employees

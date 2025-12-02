@@ -1,3 +1,5 @@
+{{ config(materialized='incremental', unique_key='orderid') }}
+
 select
     orderid,
     orderdate,
@@ -11,5 +13,12 @@ select
         when status = '03' then 'Cancelled'
         else null
     end as statusdesc,
-    updated_at
-from l1_landing.orders
+    updated_at,
+    current_timestamp as dbt_updated_at
+
+from {{ source('landing', 'orders') }}
+
+{% if is_incremental() %}
+where updated_at >= (select max (dbt_updated_at) from {{ this }})
+{% endif %}
+

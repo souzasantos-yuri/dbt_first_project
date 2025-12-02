@@ -1,17 +1,20 @@
 models:
   - name: customers_stg
+    description: Staged customer data from order management system (OMS), with minor row-level transformations.
     columns:
       - name: email
         tests:
           - string_not_empty
 
   - name: employees_stg
+    description: Staged employees data from order management system (oms), with minor row-level transformations.
     columns:
       - name: jobtitle
         tests:
           - string_not_empty
 
   - name: orders_stg
+    description: Staged orders data from order management system (oms), with minor row-level transformations.
     columns:
       - name: orderid
         tests:
@@ -19,12 +22,14 @@ models:
           - not_null
 
       - name: statusdesc
+        description: "{{ doc('statusdesc') }}"
         tests:
           - accepted_values:
               arguments:
                 values: ['01', '02', '03']
 
   - name: orderitems_stg
+    description: Staged order items data from order management system (oms), with minor row-level transformations.
     columns:
       - name: orderid
         tests:

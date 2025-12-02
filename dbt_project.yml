@@ -16,6 +16,18 @@ clean-targets:
 
 models:
   dbt_project:
+    profit_us:
+      config:
+        +schema: TRAINING
+        +materialized: table
+    profit_uk:
+      config:
+        +schema: TRAINING
+        +materialized: table
+    profit_india:
+      config:
+        +schema: TRAINING
+        +materialized: table
     customers_stg:
       config:
         +schema: L2_PROCESSING
